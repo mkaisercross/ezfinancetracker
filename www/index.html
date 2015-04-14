@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Global Eagles</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body bgcolor="sky blue">
+  <div class="container">
+  <div id="login-form">
+    <h3><font color= "red"><center>Login to Receipt Scanner</font></center></h3>
+    <fieldset>
+      <form class="login" action="javascript:void(0);" method="get">
+        <input class="username" type="user" required value="Username" 
+               onBlur="if(this.value=='')this.value='Username'" 
+               onFocus="if(this.value=='Username')this.value='' "> 
+        <input class="password" type="password" required value="Password" 
+               onBlur="if(this.value=='')this.value='Password'" 
+               onFocus="if(this.value=='Password')this.value='' "> 
+        <button id="Login" class="float-left submit-button" >Login</button>
+      </form>
+    </fieldset>
+  </div> <!-- end login-form -->
+</div>
+<script src="js/jquery-2.1.3.min.js"></script>
+<script src="js/index.js"></script>
+</body>
+
+</html>
