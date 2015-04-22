@@ -1,0 +1,108 @@
+<html>
+<head>
+<style>
+body, html {font-family:sans-serif; font-size: 36; background-image:"footer_lodyas.png";}
+
+</style>
+
+</head>
+
+<body><center>
+<b>
+
+<script>
+var text="GLOBAL EAGLES "
+var speed=80 
+
+if (document.all||document.getElementById){
+document.write('<span id="highlight">' + text + '</span>')
+var storetext=document.getElementById? document.getElementById("highlight") : document.all.highlight
+}
+else
+document.write(text)
+var hex=new Array("00","14","28","3C","50","64","78","8C","A0","B4","C8","DC","F0")
+var r=1
+var g=1
+var b=1
+var seq=1
+function changetext(){
+rainbow="#"+hex[r]+hex[g]+hex[b]
+storetext.style.color=rainbow
+}
+function change(){
+if (seq==6){
+b--
+if (b==0)
+seq=1
+}
+if (seq==5){
+r++
+if (r==12)
+seq=6
+}
+if (seq==4){
+g--
+if (g==0)
+seq=5
+}
+if (seq==3){
+b++
+if (b==12)
+seq=4
+}
+if (seq==2){
+r--
+if (r==0)
+seq=3
+}
+if (seq==1){
+g++
+if (g==12)
+seq=2
+}
+changetext()
+}
+function starteffect(){
+if (document.all||document.getElementById)
+flash=setInterval("change()",speed)
+}
+starteffect()
+</script>
+</b>
+<br/>
+<p><center><a target="_self" href="splash.html"><span style="font-size: 8pt; text-decoration: none">back to home</span></a></center></p>
+</body></center>
+</html>
+
+
+<DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset=utf-8>
+<meta name="viewport" content="width=320">
+<title>camera</title>
+<link rel="stylesheet" href="style.css">
+<body background="footer_lodyas.png"><center>  
+    <header>
+        Take Photo of Receipt
+    </header>
+    <div id="content"></div>
+    <form>
+        <input type="file" id="take-picture" accept="image/*">                         
+    </form>
+ 	<footer>
+</footer>
+    <script src="script.js" type="text/javascript"></script>
+<script type="text/javascript">
+ var _gaq = _gaq || [];
+ _gaq.push(['_setAccount', 'UA-1093669-11']);
+ _gaq.push(['_trackPageview']);
+ (function() {
+   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+ })();
+</script>
+</body></center>
+</html>
+
