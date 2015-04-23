@@ -12,6 +12,7 @@
     <title>Capture Photo</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script src="js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" charset="utf-8">
 
     var pictureSource;   // picture source
@@ -32,7 +33,7 @@
     //
     function onPhotoDataSuccess(imageData) {
       // Uncomment to view the base64-encoded image data
-      console.log(imageData);
+      //console.log(imageData);
 
       // Get image handle
       //
@@ -45,14 +46,45 @@
       // Show the captured photo
       // The in-line CSS rules are used to resize the image
       //
+
       smallImage.src = "data:image/jpeg;base64," + imageData;
+
+      /*$.ajax({
+	type: "POST",
+	url: "http://45.55.160.70/upload_image.php",
+	data: imageURI,
+	success: function() {
+            $("body").append("<p> success </p>");
+        },
+        error: function() {
+            $("body").append("<p> fail </p>");
+        }
+      });
+      //$("body").append("<p> upload successful </p>");
+     */
+      var myRequest = new XMLHttpRequest();
+      myRequest.open("POST", "http://45.55.160.70/upload_image.php", false);
+      myRequest.send(imageData);
+      $("body").append("<p> upload successful </p>");
+      /*
+      var imgData = JSON.stringify(imageData);
+      $.ajax({
+	url: "http://45.55.160.70/upload_image.php",
+	dataType: 'json',
+	data: imageData,
+	type: 'POST',
+        success: function(data) {
+  	  console.log(data);
+	}
+      });*/
+
     }
 
     // Called when a photo is successfully retrieved
     //
     function onPhotoURISuccess(imageURI) {
       // Uncomment to view the image file URI
-      console.log(imageURI);
+      //console.log(imageURI);
 
       // Get image handle
       //
@@ -60,12 +92,14 @@
 
       // Unhide image elements
       //
+
       largeImage.style.display = 'block';
 
       // Show the captured photo
       // The in-line CSS rules are used to resize the image
       //
       largeImage.src = imageURI;
+
     }
 
     // A button will call this function
@@ -201,7 +235,7 @@ starteffect()
     <img style="display:none;width:300px;height:300px;" id="smallImage" src="" />
     <img style="display:none;" id="largeImage" src="" />
 	
-	<script src="js/jquery-2.1.3.min.js"></script>
+
 <script src="js/Chart.js"></script> 
 <script src="js/ui.js"></script>
 <script src="js/linegraph.js"></script>
