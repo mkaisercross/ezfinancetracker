@@ -17,3 +17,10 @@ body, html {
 h1 {
 		color:#0099FF;
 }
+
+canvas{
+
+	width:auto;
+	height:auto;	
+
+};
