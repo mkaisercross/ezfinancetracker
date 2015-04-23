@@ -9,7 +9,7 @@ var radardata = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [81.50, 59.62, 90.50, 25.49, 40.67, 24.29,]
+            data: [81.50, 59.62, 90.50, 100.49, 40.67, 20.29,]
         }
     ]
 };
