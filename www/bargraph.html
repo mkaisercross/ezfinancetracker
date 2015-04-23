@@ -28,7 +28,7 @@
               <li class="pure-menu-item"><a href="#" class="pure-menu-link">Take Photo</a></li>
               <li class="pure-menu-item"><a href="#" class="pure-menu-link">View Photos</a></li>
               <li class="pure-menu-item" class="menu-item-divided pure-menu-selected">
-                  <a href="linegraph.html" class="pure-menu-link">View Charts</a>
+                  <a href="bargraph.html" class="pure-menu-link">View Charts</a>
               </li>
               <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">Sign Out</a></li>
             </ul>
@@ -37,17 +37,17 @@
     <div id="main">
         <div class="header">
             <h1>Spending History</h1>
-
-<select onChange="window.location.href=this.value">
+            <select onChange="window.location.href=this.value">
+                 <option value="bargraph.html">Bar Graph</option>
     <option value="linegraph.html">Line Graph</option>
     <option value="piegraph.html">Pie Graph</option>
-    <option value="bargraph.html">Bar Graph</option>
+
     <option value="radargraph.html">Radar Graph</option>
 </select>
         </div>
         <div class="content">
             <h2 class="content-subhead">Money Spent by Month</h2>
-            <canvas id="buyers" 
+            <canvas id="buyers3" 
                     width="350" height="300"  
                     style="border: solid 1px black;">
             </canvas>
@@ -58,7 +58,7 @@
 <script src="js/jquery-2.1.3.min.js"></script>
 <script src="js/Chart.js"></script> 
 <script src="js/ui.js"></script>
-<script src="js/linegraph.js"></script>
+<script src="js/bargraph.js"></script>
 
 </body>
 </html>
