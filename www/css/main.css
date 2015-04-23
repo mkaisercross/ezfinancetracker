@@ -10,4 +10,10 @@ body {
     background-color: 
 }
 
-body, html { position: fixed; overflow-y:scroll }
+body, html { 
+    overflow-x: hidden; 
+    overflow-y: auto;
+}
+h1 {
+		color:#0099FF;
+}
