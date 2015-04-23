@@ -10,3 +10,4 @@ body {
     background-color: 
 }
 
+body, html { position: fixed; overflow-y:scroll }
