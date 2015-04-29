@@ -67,11 +67,3 @@ h1, h2, h3, h4, h5 {
     }
     
 
-$("body").on('focus', 'input, textarea', function() {
-/*    $("body").find("footer").hide();*/
-    $("body").html("Hello");
-});
-
-$("body").on('blur', 'input, textarea', function() {
-    $("body").find("footer").show();
-});

@@ -9,3 +9,16 @@ $("#Login").click(function() {
     window.location.href = "splash.html"
   }
 });
+
+
+
+// keeps footer from moving when virtual keyboard appears
+var initialScreenSize = window.innerHeight;
+window.addEventListener("resize", function() {
+    if(window.innerHeight < initialScreenSize){
+        $("footer").hide();
+    }
+    else{
+        $("footer").show();
+    }
+});
