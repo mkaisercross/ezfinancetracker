@@ -21,6 +21,7 @@ html {
     position: absolute;
     overflow: hidden;
     color: #333333; 
+    font-size: 1.3em;
 }
 
 body {
@@ -34,7 +35,7 @@ body, html {
 }
 
 h1, h2, h3, h4, h5 {
-    color: #333333;
+    color: #999999;
 }
 
 .pure-button {
@@ -67,11 +68,8 @@ h1, h2, h3, h4, h5 {
     }
     
 
-$("body").on('focus', 'input, textarea', function() {
-/*    $("body").find("footer").hide();*/
-    $("body").html("Hello");
-});
-
-$("body").on('blur', 'input, textarea', function() {
-    $("body").find("footer").show();
-});
+.header h1 {
+  font-size: 1.5em;
+  z-index: 1000;
+  
+}

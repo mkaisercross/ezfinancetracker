@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="css/layouts/side-menu.css">
     <!--<![endif]-->
 </head>
-<body background="footer_lodyas.png">
+<body>
 <div id="layout">
   <a href="#menu" id="menuLink" class="menu-link">
       <span></span>
@@ -37,16 +37,20 @@
   </div> <!-- END .menu -->
   <div id="main">
     <div class="header">
-      <h1>Page Title</h1>
-      <h2>A subtitle for your page goes here</h2>
+      <h1>Take Photo</h1>
     </div>
-    <div class="content">
-      <button onclick="capturePhoto();">Capture Photo</button> <br><br>
-      <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br><br>
-      <!--<button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br><br>-->
-      <img style="display:none;width:300px;height:300px;" id="smallImage" src="" />
-      <img style="display:none;" id="largeImage" src="" />
-    </div>
+    <div class="content"><center>
+      <div id="choose-capture-type">
+        <button id="capture-photo" >Capture Photo</button> <br><br>
+        <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br><br>
+        <img style="display: none; width:300px;height:300px;" id="smallImage" src="" />
+        <img style="display: none;" id="largeImage" src="" />
+      </div>
+      <img id="loading" src="img/loading.gif" />
+      <div id="review-results">      
+
+      </div>
+    </center></div>
   </div> <!-- END .main -->
 </div> <!-- END .layout -->
 
