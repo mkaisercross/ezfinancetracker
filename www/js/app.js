@@ -10,7 +10,7 @@ var ezFinanceTrackerApp = angular.module('ezFinanceTrackerApp', [
         .state('login', {
             url: "",
 	    views: {
-      	      "main": { templateUrl: "include_views/login.html" }
+      	      "main": { templateUrl: "html_templates/login.html" }
 	    },
             /*templateUrl: "",*/
             controller: function($scope){
@@ -21,7 +21,7 @@ var ezFinanceTrackerApp = angular.module('ezFinanceTrackerApp', [
             url: "/splash",
 	    views: {
       	      "main": { 
-                 templateUrl: "include_views/splash.html",
+                 templateUrl: "html_templates/splash.html",
                  controller: function($scope) {
                    $scope.clickMenu = function() {
                      /*e.preventDefault();*/
@@ -36,7 +36,7 @@ var ezFinanceTrackerApp = angular.module('ezFinanceTrackerApp', [
         .state('graphs', {
             url: "/graphs",
 	    views: {
-      	      "main": { templateUrl: "include_views/graph.html" }
+      	      "main": { templateUrl: "html_templates/graph.html" }
 	    },
             controller: function($scope){
               $scope.items = ["A", "List", "Of", "Items"];
@@ -45,7 +45,7 @@ var ezFinanceTrackerApp = angular.module('ezFinanceTrackerApp', [
           .state('graphs.graph1', {
               url: "/graphs",
    	      views: {
-      	        "graph": { templateUrl: "include_views/graphs.graphs1.html" }
+      	        "graph": { templateUrl: "html_templates/graphs.graphs1.html" }
 	      },
               controller: function($scope){
                 $scope.things = ["A", "Set", "Of", "Things"];
@@ -54,7 +54,7 @@ var ezFinanceTrackerApp = angular.module('ezFinanceTrackerApp', [
           .state('graphs.graph2', {
               url: "/graphs",
    	      views: {
-      	        "graph": { templateUrl: "include_views/graphs.graphs2.html" }
+      	        "graph": { templateUrl: "html_templates/graphs.graphs2.html" }
 	      },
               controller: function($scope){
                 $scope.things = ["A", "Set", "Of", "Things"];
@@ -63,7 +63,7 @@ var ezFinanceTrackerApp = angular.module('ezFinanceTrackerApp', [
         .state('scan', {
             url: "/scan",
 	    views: {
-      	      "main": { templateUrl: "include_views/login.html" }
+      	      "main": { templateUrl: "html_templates/login.html" }
 	    },
             controller: function($scope){
               $scope.items = ["A", "List", "Of", "Items"];
@@ -72,7 +72,7 @@ var ezFinanceTrackerApp = angular.module('ezFinanceTrackerApp', [
           .state('scan.begin', {
               url: "/scan",
    	      views: {
-      	        "scan-main": { templateUrl: "include_views/scan.begin.html" }
+      	        "scan-main": { templateUrl: "html_templates/scan.begin.html" }
 	      },
               controller: function($scope){
                 $scope.things = ["A", "Set", "Of", "Things"];
@@ -81,7 +81,7 @@ var ezFinanceTrackerApp = angular.module('ezFinanceTrackerApp', [
           .state('scan.load', {
               url: "/scan",
    	      views: {
-      	        "scan-main": { templateUrl: "include_views/scan.load.html" }
+      	        "scan-main": { templateUrl: "html_templates/scan.load.html" }
 	      },
               controller: function($scope){
                 $scope.things = ["A", "Set", "Of", "Things"];
@@ -90,7 +90,7 @@ var ezFinanceTrackerApp = angular.module('ezFinanceTrackerApp', [
           .state('scan.review', {
               url: "/scan",
    	      views: {
-      	        "scan-main": { templateUrl: "include_views/scan.review.html" }
+      	        "scan-main": { templateUrl: "html_templates/scan.review.html" }
 	      },
               controller: function($scope){
                 $scope.things = ["A", "Set", "Of", "Things"];
