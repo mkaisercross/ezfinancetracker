@@ -1,3 +1,5 @@
+
+window.addEventListener("load",function(event) {
 (function (window, document) {
 
     var layout   = document.getElementById('layout'),
@@ -33,3 +35,7 @@
     };
 
 }(this, this.document));
+
+},false);
+
+

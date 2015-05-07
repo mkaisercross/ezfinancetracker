@@ -1,3 +1,4 @@
+document.onload = function() {
 var data = [
     {
         value: 35.72,
@@ -30,5 +31,32 @@ var data = [
         label: "Sushi Hut"
     }
 ];
+
 var buyers1 = document.getElementById("buyers1").getContext('2d');
 new Chart(buyers1).Doughnut(data);
+
+
+    $(document).load(function() {
+ 
+        xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("POST","http://45.55.160.70/pie_chart_data.php",true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send("user_name=" + $("input.user_name").val()) ;  
+        
+        xmlhttp.onreadystatechange = function() {
+         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+             var itemArray = JSON.parse(xmlhttp.responseText);
+             itemfunction(itemArray);
+            }
+          }
+
+        xmlhttp.open("GET", id, price, category, true);
+        xmlhttp.send();
+
+        function itemfunction(items){
+
+
+     
+        }
+    });
+}

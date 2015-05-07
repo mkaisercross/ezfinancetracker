@@ -1,15 +1,59 @@
 var ezFinanceTrackerControllers = angular.module('ezFinanceTrackerControllers', []);
 
-ezFinanceTrackerControllers.controller('PhoneListCtrl', ['$scope', '$http',
-  function ($scope, $http) {
-    $http.get('phones/phones.json').success(function(data) {
-      $scope.phones = data;
-    });
+ezFinanceTrackerControllers.controller('LoginCtrl', ['$scope', 
+  function($scope) {
+/*$("#Login").click(function() {
+  localStorage.setItem("username", $("form.login > input.username").val());
+  var date = new Date();
+  date.setDate(date.getDate() + 1);
+  localStorage.setItem("expirationDate", date);
+  if (localStorage.getItem("username") != "") {
+    window.location.href = "/#/splash"
+  }
+});
 
-    $scope.orderProp = 'age';
-  }]);
 
-ezFinanceTrackerControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams',
+
+// keeps footer from moving when virtual keyboard appears
+var initialScreenSize = window.innerHeight;
+window.addEventListener("resize", function() {
+    if(window.innerHeight < initialScreenSize){
+        $("footer").hide();
+    }
+    else{
+        $("footer").show();
+    }
+});
+*/
+
+  }
+]);
+
+ezFinanceTrackerControllers.controller('SplashCtrl', ['$scope', 
+  function($scope) {
+
+  }
+]);
+
+var ezFinanceTrackerControllers = angular.module('ezFinanceTrackerControllers', []);
+
+ezFinanceTrackerControllers.controller('RegisterCtrl', ['$scope', 
+  function($scope) {
+
+  }
+]);
+
+var ezFinanceTrackerControllers = angular.module('ezFinanceTrackerControllers', []);
+
+ezFinanceTrackerControllers.controller('GraphsCtrl', ['$scope', 
+  function($scope) {
+
+  }
+]);
+
+
+ezFinanceTrackerControllers.controller('ReceiptDetailCtrl', ['$scope', '$routeParams',
   function($scope, $routeParams) {
-    $scope.phoneId = $routeParams.phoneId;
-  }]);
+    $scope.receiptId = $routeParams.receiptId;
+  }
+]);
