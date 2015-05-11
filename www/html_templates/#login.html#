@@ -16,12 +16,9 @@
 
 
   .pure-form .checkbox {
-    float: left !important;
-    width: 100% !important;
-  }
-  .pure-form .checkbox input, .pure-form .checkbox label {
-    float: left !important;
-     margin-right: 4px;
+    float: left;
+    clear: left;
+    width: 100%;
   }
   #Login {
     width: 100%;
@@ -30,7 +27,7 @@
   </style>
 
   <div class="main">
-    <h1><center>EZ Finance Tracker Login</center></h1>
+    <h1><center>EZFinanceTrackerLogin</center></h1>
     <form id="login" class="pure-form pure-form-stacked login" onsubmit="return false;">
       <fieldset>
         <label for="username">Username</label>

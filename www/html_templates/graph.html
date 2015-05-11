@@ -1,0 +1,19 @@
+
+<div id="layout">
+    <ng-include src="'html_templates/menu.html'"> </ng-include>
+    <div id="main">
+        <div class="header">
+            <h1>Spending History</h1>
+            <form class="pure-form pure-form-stacked">
+                <fieldset>
+		<select class="form-control" ng-model="tt" ng-options="opt.value as opt.label for opt in graphOptions"> <!--onChange="window.location.href=this.value"-->
+		</select>
+                </fieldset>
+            </form>
+        </div>
+        <div class="content">
+            <div ui-view="graph"></div>
+        </div>
+    </div>
+</div>
+   
