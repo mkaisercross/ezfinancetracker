@@ -64,7 +64,7 @@
 	    '<input class="tax" type="text" name="" required value="" >' +
 	    '<label for="">Total</label>' +
 	    '<input class="total" type="text" name="" required value="" >' +
-	    '<button id="Login" class="pure-button pure-button-primary float-left submit-button" >Login</button>' +
+	    '<button id="Login" class="pure-button pure-button-primary float-left submit-button" >Confirm Data</button>' +
 	  '</fieldset>' +
 	'</form>';
       return editModeHtml
