@@ -178,7 +178,7 @@ new Chart(buyers1).Doughnut(data);
 				$state.current.data.originalImage = imageData;
 				$state.go("scan.begin");
 			    }
-			    $scope.capturePhoto = function() {
+			    $scope.capturePhoto = function() { // 
 				$scope.capturing = "clicked";
 				navigator.camera.getPicture(
 				   $scope.onPhotoDataSuccess, 
@@ -193,35 +193,35 @@ new Chart(buyers1).Doughnut(data);
 	    .state('scan.load', {
 		url: "/load",
 		views: {
-		  "scan-main": { 
-		      templateUrl: "html_templates/scan.load.html",
-		      controller: function($scope, $state, menu){
-  			  $scope.clickMenu = menu.toggle; 
+		    "scan-main": { 
+			templateUrl: "html_templates/scan.load.html",
+			controller: function($scope, $state, menu){
+			    $scope.clickMenu = menu.toggle; 
 
-			  /*var smallImage = document.getElementById('smallImage');
-			  smallImage.style.display = 'block';
-		          smallImage.src = "data:image/jpeg;base64," + imageData;*/
-                          /*
-                          imageData = $state.current.data.originalImage;
-       		          var myRequest = new XMLHttpRequest();
-			  myRequest.open("POST", "http://45.55.160.70/upload_image.php", false);
-			  myRequest.send(imageData);
-                          $state.current.data.processedResults = myRequest.responseText;
-                          $state.go("scan.review"); */
-		      }
-		  }
+			    /*var smallImage = document.getElementById('smallImage');
+			    smallImage.style.display = 'block';
+			    smallImage.src = "data:image/jpeg;base64," + imageData;*/
+			    /*
+			    imageData = $state.current.data.originalImage;
+			    var myRequest = new XMLHttpRequest();
+			    myRequest.open("POST", "http://45.55.160.70/upload_image.php", false);
+			    myRequest.send(imageData);
+			    $state.current.data.processedResults = myRequest.responseText;
+			    $state.go("scan.review"); */
+			}
+		    }
 		}
 	    })
 	    .state('scan.review', {
 		url: "/review",
 		views: {
-		  "scan-main": { 
-		      templateUrl: "html_templates/scan.review.html",
-		      controller: function($scope, $state, menu){
-                          $scope.processedResults "hello"; //= $state.current.data.processedResults;
-  			  $scope.clickMenu = menu.toggle;
-		      }
-		  }
+		    "scan-main": { 
+			templateUrl: "html_templates/scan.review.html",
+			controller: function($scope, $state, menu){
+			    $scope.processedResults = "hello"; //= $state.current.data.processedResults;
+			    $scope.clickMenu = menu.toggle;
+			}
+		    }
 		}
 	    })
     })
