@@ -14,18 +14,7 @@ height: 30px;
       <h1>Take Photo</h1>
     </div>
     <div class="content">
-      <div id="choose-capture-type">
-        <br>
-        {{capturing}} <button id="capture-photo" class="pure-button" ng-click="capturePhoto()">Capture Photo</button> <br><br> 
-
-        <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);" class="pure-button">From Photo Library</button><br><br>
-        <img style="display: none; width:300px;height:300px;" id="smallImage" src="" />
-        <img style="display: none;" id="largeImage" src="" />
-      </div>
-      <img id="loading" src="img/loading.gif" />
-      <div id="review-results">      
-
-      </div>
+      <ui-view="scan-main"> </ui-view>
     </div>
   </div> <!-- END .main -->
 </div> <!-- END .layout -->

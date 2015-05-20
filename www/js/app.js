@@ -153,52 +153,61 @@ new Chart(buyers1).Doughnut(data);
 	    views: {
 		"main": { 
 		    templateUrl: "html_templates/scan.html",
+                    data: {
+                        originalImage: "",
+                        processedResults: ""
+                    },
 		    controller: function($scope, $state, $stateParams, menu){
 			$scope.clickMenu = menu.toggle;
-                        $scope.onFail = function (message) { 
-                            alert('Failed because: ' + message); 
-                        }
-			$scope.onPhotoDataSuccess = function (imageData) {
-			    $state.go("scan.begin", {imageData: imageData});
-			}
-                        $scope.capturePhoto = function() {
-                            $scope.capturing = "clicked";
-			    navigator.camera.getPicture(
-                               $scope.onPhotoDataSuccess, 
-                                $scope.onFail, 
-                                { quality: 50, destinationType: destinationType.DATA_URL }
-                            );
-                        };
 		    }
 		}
 	    }
         })
 	    .state('scan.begin', {
 		url: "/begin",
-                params : {imageData: imageData, ocrOutput: myRequest.responseText } ,
 		views: {
-		  "scan-main": { 
-		      templateUrl: "html_templates/scan.begin.html",
-		      controller: function($scope, menu){
-  			  $scope.clickMenu = menu.toggle;
-			  /*var smallImage = document.getElementById('smallImage');
-			  smallImage.style.display = 'block';
-		          smallImage.src = "data:image/jpeg;base64," + imageData;*/
-       		          var myRequest = new XMLHttpRequest();
-			  myRequest.open("POST", "http://45.55.160.70/upload_image.php", false);
-			  myRequest.send(imageData);
-                          $state.go("scan.begin", {ocrOutput: myRequest.responseText});
-		      }
-		  }
+		    "scan-main": { 
+			templateUrl: "html_templates/scan.begin.html",
+			controller: function($scope, $state, menu){
+			    $scope.clickMenu = menu.toggle;
+                            /*
+			    $scope.onFail = function (message) { 
+				alert('Failed because: ' + message); 
+			    }
+			    $scope.onPhotoDataSuccess = function (imageData) {
+				$state.current.data.originalImage = imageData;
+				$state.go("scan.begin");
+			    }
+			    $scope.capturePhoto = function() {
+				$scope.capturing = "clicked";
+				navigator.camera.getPicture(
+				   $scope.onPhotoDataSuccess, 
+				    $scope.onFail, 
+				    { quality: 50, destinationType: destinationType.DATA_URL }
+				);
+			    };*/
+			}
+		    }
 		}
 	    })
 	    .state('scan.load', {
 		url: "/load",
 		views: {
 		  "scan-main": { 
-		      templateUrl: "html_templates/scan.begin.html",
-		      controller: function($scope, menu){
-  			  $scope.clickMenu = menu.toggle;
+		      templateUrl: "html_templates/scan.load.html",
+		      controller: function($scope, $state, menu){
+  			  $scope.clickMenu = menu.toggle; 
+
+			  /*var smallImage = document.getElementById('smallImage');
+			  smallImage.style.display = 'block';
+		          smallImage.src = "data:image/jpeg;base64," + imageData;*/
+                          /*
+                          imageData = $state.current.data.originalImage;
+       		          var myRequest = new XMLHttpRequest();
+			  myRequest.open("POST", "http://45.55.160.70/upload_image.php", false);
+			  myRequest.send(imageData);
+                          $state.current.data.processedResults = myRequest.responseText;
+                          $state.go("scan.review"); */
 		      }
 		  }
 		}
@@ -207,8 +216,9 @@ new Chart(buyers1).Doughnut(data);
 		url: "/review",
 		views: {
 		  "scan-main": { 
-		      templateUrl: "html_templates/scan.begin.html",
-		      controller: function($scope, menu){
+		      templateUrl: "html_templates/scan.review.html",
+		      controller: function($scope, $state, menu){
+                          $scope.processedResults "hello"; //= $state.current.data.processedResults;
   			  $scope.clickMenu = menu.toggle;
 		      }
 		  }
