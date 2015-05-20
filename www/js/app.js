@@ -153,20 +153,41 @@ new Chart(buyers1).Doughnut(data);
 	    views: {
 		"main": { 
 		    templateUrl: "html_templates/scan.html",
-		    controller: function($scope, menu){
+		    controller: function($scope, $state, $stateParams, menu){
 			$scope.clickMenu = menu.toggle;
-                        $scope.capturePhoto = function() {$scope.capturing = "clicked";};
+                        $scope.onFail = function (message) { 
+                            alert('Failed because: ' + message); 
+                        }
+			$scope.onPhotoDataSuccess = function (imageData) {
+			    $state.go("scan.begin", {imageData: imageData});
+			}
+                        $scope.capturePhoto = function() {
+                            $scope.capturing = "clicked";
+			    navigator.camera.getPicture(
+                               $scope.onPhotoDataSuccess, 
+                                $scope.onFail, 
+                                { quality: 50, destinationType: destinationType.DATA_URL }
+                            );
+                        };
 		    }
 		}
 	    }
         })
 	    .state('scan.begin', {
 		url: "/begin",
+                params : {imageData: imageData, ocrOutput: myRequest.responseText } ,
 		views: {
 		  "scan-main": { 
 		      templateUrl: "html_templates/scan.begin.html",
 		      controller: function($scope, menu){
   			  $scope.clickMenu = menu.toggle;
+			  /*var smallImage = document.getElementById('smallImage');
+			  smallImage.style.display = 'block';
+		          smallImage.src = "data:image/jpeg;base64," + imageData;*/
+       		          var myRequest = new XMLHttpRequest();
+			  myRequest.open("POST", "http://45.55.160.70/upload_image.php", false);
+			  myRequest.send(imageData);
+                          $state.go("scan.begin", {ocrOutput: myRequest.responseText});
 		      }
 		  }
 		}
