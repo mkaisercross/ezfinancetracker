@@ -150,13 +150,13 @@ new Chart(buyers1).Doughnut(data);
 
         .state('scan', {
             url: "/scan",
+            data: {
+                originalImage: "",
+                processedResults: ""
+            },
 	    views: {
 		"main": { 
 		    templateUrl: "html_templates/scan.html",
-                    data: {
-                        originalImage: "",
-                        processedResults: ""
-                    },
 		    controller: function($scope, $state, $stateParams, menu){
 			$scope.clickMenu = menu.toggle;
 		    }
@@ -166,26 +166,28 @@ new Chart(buyers1).Doughnut(data);
 	    .state('scan.begin', {
 		url: "/begin",
 		views: {
-		    "scan-main": { 
+		    "scan_main": { 
 			templateUrl: "html_templates/scan.begin.html",
 			controller: function($scope, $state, menu){
 			    $scope.clickMenu = menu.toggle;
-                            /*
+
 			    $scope.onFail = function (message) { 
-				alert('Failed because: ' + message); 
+				alert('Failed because: ' + message);
+				$scope.capturing = "failed image capture";
 			    }
 			    $scope.onPhotoDataSuccess = function (imageData) {
 				$state.current.data.originalImage = imageData;
-				$state.go("scan.begin");
+				$scope.capturing = "captured image";
+				//$state.go("scan.load");
 			    }
 			    $scope.capturePhoto = function() { // 
-				$scope.capturing = "clicked";
-				navigator.camera.getPicture(
+
+				/*navigator.camera.getPicture(
 				   $scope.onPhotoDataSuccess, 
 				    $scope.onFail, 
 				    { quality: 50, destinationType: destinationType.DATA_URL }
 				);
-			    };*/
+			    };
 			}
 		    }
 		}
@@ -193,7 +195,7 @@ new Chart(buyers1).Doughnut(data);
 	    .state('scan.load', {
 		url: "/load",
 		views: {
-		    "scan-main": { 
+		    "scan_main": { 
 			templateUrl: "html_templates/scan.load.html",
 			controller: function($scope, $state, menu){
 			    $scope.clickMenu = menu.toggle; 
@@ -201,13 +203,13 @@ new Chart(buyers1).Doughnut(data);
 			    /*var smallImage = document.getElementById('smallImage');
 			    smallImage.style.display = 'block';
 			    smallImage.src = "data:image/jpeg;base64," + imageData;*/
-			    /*
+			    
 			    imageData = $state.current.data.originalImage;
 			    var myRequest = new XMLHttpRequest();
 			    myRequest.open("POST", "http://45.55.160.70/upload_image.php", false);
 			    myRequest.send(imageData);
 			    $state.current.data.processedResults = myRequest.responseText;
-			    $state.go("scan.review"); */
+			    $state.go("scan.review"); 
 			}
 		    }
 		}
@@ -215,10 +217,10 @@ new Chart(buyers1).Doughnut(data);
 	    .state('scan.review', {
 		url: "/review",
 		views: {
-		    "scan-main": { 
+		    "scan_main": { 
 			templateUrl: "html_templates/scan.review.html",
 			controller: function($scope, $state, menu){
-			    $scope.processedResults = "hello"; //= $state.current.data.processedResults;
+			    $scope.processedResults = $state.current.data.processedResults;
 			    $scope.clickMenu = menu.toggle;
 			}
 		    }
