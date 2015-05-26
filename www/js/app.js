@@ -176,13 +176,13 @@ new Chart(buyers1).Doughnut(data);
 				$scope.capturing = "failed image capture";
 			    }
 			    $scope.onPhotoDataSuccess = function (imageData) {
-				$state.current.data.originalImage = imageData;
+				// !!! TEMP COMMENT $state.current.data.originalImage = imageData; 
 				$scope.capturing = "captured image";
 				//$state.go("scan.load");
 			    }
 			    $scope.capturePhoto = function() { // 
 
-				/*navigator.camera.getPicture(
+				navigator.camera.getPicture(
 				   $scope.onPhotoDataSuccess, 
 				    $scope.onFail, 
 				    { quality: 50, destinationType: destinationType.DATA_URL }
@@ -204,11 +204,11 @@ new Chart(buyers1).Doughnut(data);
 			    smallImage.style.display = 'block';
 			    smallImage.src = "data:image/jpeg;base64," + imageData;*/
 			    
-			    imageData = $state.current.data.originalImage;
+			    // !!! TEMP COMMENT nimageData = $state.current.data.originalImage;
 			    var myRequest = new XMLHttpRequest();
 			    myRequest.open("POST", "http://45.55.160.70/upload_image.php", false);
 			    myRequest.send(imageData);
-			    $state.current.data.processedResults = myRequest.responseText;
+			    // !!! TEMP COMMENT $state.current.data.processedResults = myRequest.responseText;
 			    $state.go("scan.review"); 
 			}
 		    }
@@ -220,7 +220,7 @@ new Chart(buyers1).Doughnut(data);
 		    "scan_main": { 
 			templateUrl: "html_templates/scan.review.html",
 			controller: function($scope, $state, menu){
-			    $scope.processedResults = $state.current.data.processedResults;
+			    // !!! TEMP COMMENT $scope.processedResults = $state.current.data.processedResults;
 			    $scope.clickMenu = menu.toggle;
 			}
 		    }
