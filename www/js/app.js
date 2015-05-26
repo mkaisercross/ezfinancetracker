@@ -150,10 +150,6 @@ new Chart(buyers1).Doughnut(data);
 
         .state('scan', {
             url: "/scan",
-            data: {
-                originalImage: "",
-                processedResults: ""
-            },
 	    views: {
 		"main": { 
 		    templateUrl: "html_templates/scan.html",
@@ -176,12 +172,14 @@ new Chart(buyers1).Doughnut(data);
 				$scope.capturing = "failed image capture";
 			    }
 			    $scope.onPhotoDataSuccess = function (imageData) {
-				// !!! TEMP COMMENT $state.current.data.originalImage = imageData; 
+                                _params = {}
+                                _params.originalImage = imageData; 
+				//$state.current.data.originalImage = imageData; 
 				$scope.capturing = "captured image";
-				//$state.go("scan.load");
+                                if (imageData.length != 0) $state.go("scan.load", _params);
 			    }
 			    $scope.capturePhoto = function() { // 
-
+                                var destinationType=navigator.camera.DestinationType;
 				navigator.camera.getPicture(
 				   $scope.onPhotoDataSuccess, 
 				    $scope.onFail, 
@@ -194,33 +192,37 @@ new Chart(buyers1).Doughnut(data);
 	    })
 	    .state('scan.load', {
 		url: "/load",
+                params: {originalImage: null},
 		views: {
-		    "scan_main": { 
-			templateUrl: "html_templates/scan.load.html",
-			controller: function($scope, $state, menu){
-			    $scope.clickMenu = menu.toggle; 
-
-			    /*var smallImage = document.getElementById('smallImage');
-			    smallImage.style.display = 'block';
-			    smallImage.src = "data:image/jpeg;base64," + imageData;*/
-			    
-			    // !!! TEMP COMMENT nimageData = $state.current.data.originalImage;
-			    var myRequest = new XMLHttpRequest();
-			    myRequest.open("POST", "http://45.55.160.70/upload_image.php", false);
-			    myRequest.send(imageData);
-			    // !!! TEMP COMMENT $state.current.data.processedResults = myRequest.responseText;
-			    $state.go("scan.review"); 
-			}
-		    }
+		  "scan_main": { 
+		      templateUrl: "html_templates/scan.load.html",
+		      controller: function($scope, $state, $stateParams, $http, menu){
+		        $scope.clickMenu = menu.toggle; 
+			/*var smallImage = document.getElementById('smallImage');
+			smallImage.style.display = 'block';
+			smallImage.src = "data:image/jpeg;base64," + imageData;*/
+			imageData = $stateParams.originalImage;  //$state.current.data.originalImage;
+                        //if (imageData.length != 0) $state.go("scan.review");
+                        $http.post("http://45.55.160.70/upload_image.php", imageData).success(
+                          function(responseData, status) {
+                            //$state.current.data.processedResults = responseData;
+                            _params = {}
+                            _params.processedResults = responseData;
+   			    $state.go("scan.review", _params); 
+                          }
+                        );
+		      }
+		  }
 		}
 	    })
 	    .state('scan.review', {
 		url: "/review",
+                params: {processedResults: null},
 		views: {
 		    "scan_main": { 
 			templateUrl: "html_templates/scan.review.html",
-			controller: function($scope, $state, menu){
-			    // !!! TEMP COMMENT $scope.processedResults = $state.current.data.processedResults;
+			controller: function($scope, $state, $stateParams, menu){
+			    $scope.processedResults = $stateParams.processedResults;
 			    $scope.clickMenu = menu.toggle;
 			}
 		    }
