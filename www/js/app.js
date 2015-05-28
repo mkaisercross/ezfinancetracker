@@ -1,7 +1,5 @@
 
 var ezFinanceTrackerApp = angular.module('ezFinanceTrackerApp', [
-  'ngRoute',
-  'ezFinanceTrackerControllers',
   'ui.router'
 ]);
 
