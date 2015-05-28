@@ -39,7 +39,7 @@ ezFinanceTrackerApp.config(function($stateProvider, $urlRouterProvider){
              }
            }
         }
-    })
+    });
 
 });
 

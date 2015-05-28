@@ -1,5 +1,6 @@
 ezFinanceTrackerApp.config(function($stateProvider, $urlRouterProvider){
     //$urlRouterProvider.otherwise("/login")
+    $stateProvider    
     .state('graph', {
         abstract: true,
         url: "/graph",
