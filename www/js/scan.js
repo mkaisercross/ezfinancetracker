@@ -61,6 +61,7 @@ ezFinanceTrackerApp.config(function($stateProvider, $urlRouterProvider){
                         //$state.current.data.processedResults = responseData;
                         _params = {}
                         _params.processedResults = responseData;
+                        _params.processedResults = window.tesseract.run("hello");
                            $state.go("scan.review", _params); 
                       }
                     );
