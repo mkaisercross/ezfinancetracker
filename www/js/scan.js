@@ -27,11 +27,11 @@ ezFinanceTrackerApp.config(function($stateProvider, $urlRouterProvider){
                         $scope.onPhotoDataSuccess = function (imageData) {
                             _params = {}
                             _params.originalImage = imageData; 
-                            //$state.current.data.originalImage = imageData; 
                             $scope.capturing = "captured image";
                             if (imageData.length != 0) $state.go("scan.load", _params);
                         }
                         $scope.capturePhoto = function() { // 
+                            //if (navigator.camera) $scope.onPhotoDataSuccess("<raw picture data>");
                             var destinationType=navigator.camera.DestinationType;
                             navigator.camera.getPicture(
                                $scope.onPhotoDataSuccess, 
@@ -61,7 +61,7 @@ ezFinanceTrackerApp.config(function($stateProvider, $urlRouterProvider){
                         //$state.current.data.processedResults = responseData;
                         _params = {}
                         _params.processedResults = responseData;
-                        _params.processedResults = window.tesseract.run("hello");
+                        //_params.processedResults = window.tesseract.run("hello");
                            $state.go("scan.review", _params); 
                       }
                     );
