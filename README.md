@@ -50,3 +50,10 @@
 
 
 ## notes 
+
+
+# Build Dependencies
+phonegap --version -> 5.0.0-0.28.0
+cordova --version -> 4.2.0
+cordova plugin whitelist
+cordova plugin camera
