@@ -4,5 +4,13 @@
             "type": "registry",
             "id": "org.apache.cordova.camera"
         }
+    },
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-whitelist"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
