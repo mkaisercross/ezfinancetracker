@@ -52,8 +52,13 @@
 ## notes 
 
 
-# Build Dependencies
+## Build Dependencies
 phonegap --version -> 5.0.0-0.28.0
 cordova --version -> 4.2.0
 cordova plugin whitelist
 cordova plugin camera
+
+
+## Debugging Tips
+- phonegap android app
+- chrome desktop. inspect android webviews by browsing to chrome://inspect/#devices in desktop chrome while android phone connected via usb
