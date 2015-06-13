@@ -1,3 +1,6 @@
+ezFinanceTrackerApp.factory('tesseract', tesseractFactory);
+
+
 ezFinanceTrackerApp.config(function($stateProvider, $urlRouterProvider){
     //$urlRouterProvider.otherwise("/login")       // For any unmatched url, send to /route1
     $stateProvider
@@ -47,26 +50,37 @@ ezFinanceTrackerApp.config(function($stateProvider, $urlRouterProvider){
             url: "/load",
             params: {originalImage: null},
             views: {
-              "scan_main": { 
-                  templateUrl: "html_templates/scan.load.html",
-                  controller: function($scope, $state, $stateParams, $http, menu){
-                    $scope.clickMenu = menu.toggle; 
-                    /*var smallImage = document.getElementById('smallImage');
-                    smallImage.style.display = 'block';
-                    smallImage.src = "data:image/jpeg;base64," + imageData;*/
-                    imageData = $stateParams.originalImage;  //$state.current.data.originalImage;
-                    //if (imageData.length != 0) $state.go("scan.review");
-                    $http.post("http://45.55.160.70/upload_image.php", imageData).success(
-                      function(responseData, status) {
-                        //$state.current.data.processedResults = responseData;
-                        _params = {}
-                        _params.processedResults = responseData;
-                        //_params.processedResults = window.tesseract.run("hello");
-                           $state.go("scan.review", _params); 
-                      }
-                    );
-                  }
-              }
+                "scan_main": { 
+                    templateUrl: "html_templates/scan.load.html",
+                    controller: function($scope, $state, $stateParams, $http, tesseract, menu){
+                        $scope.clickMenu = menu.toggle; 
+                        /*var smallImage = document.getElementById('smallImage');
+                        smallImage.style.display = 'block';
+                        smallImage.src = "data:image/jpeg;base64," + imageData;*/
+                        imageData = $stateParams.originalImage;  //$state.current.data.originalImage;
+                        //if (imageData.length != 0) $state.go("scan.review");
+
+                        tesseract.run(imageData,
+                            function(results) {
+                                _params = {}
+                                _params.processedResults = results;
+                                $state.go("scan.review", _params); 
+                            }, function() {
+                                return;
+                            }
+                        );
+
+                        /*$http.post("http://45.55.160.70/upload_image.php", imageData).success(
+                          function(responseData, status) {
+                            //$state.current.data.processedResults = responseData;
+                            _params = {}
+                            _params.processedResults = responseData;
+                            _params.processedResults = run_tesseract("hello");
+                               $state.go("scan.review", _params); 
+                          }
+                        );*/
+                    }
+                }
             }
         })
         .state('scan.review', {

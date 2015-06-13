@@ -14,6 +14,10 @@ ezFinanceTrackerApp.factory('menu', function() {
 });
 
 
+
+ezFinanceTrackerApp.factory('tesseract', tesseractFactory);
+
+
 ezFinanceTrackerApp.config(function($stateProvider, $urlRouterProvider){
     //$urlRouterProvider.otherwise("/login")
     $stateProvider

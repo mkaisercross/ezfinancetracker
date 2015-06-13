@@ -14,5 +14,7 @@
     <uses-feature name="android.hardware.camera" />
     <uses-feature name="android.hardware.camera.autofocus" />
     <preference name="android-minSdkVersion" value="10" />
-
+    <feature name="Tesseract">
+           <param name="android-package" value="org.nvizo.tesseract.Tesseract" />
+    </feature>
 </widget>
