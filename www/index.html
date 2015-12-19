@@ -8,13 +8,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!--<script type="text/javascript">
+    console.log("window.location.href = " + window.location.href);
+  </script>-->
+
   <!-- Dependencies -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-ui-router/angular-ui-router.min.js"></script>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/Chart.js/Chart.min.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+
   <script type="text/javascript" charset="utf-8" src="cordova.js"></script> 
-  <script type="text/javascript" charset="utf-8" src="Tesseract.js"></script>
+  <script type="text/javascript" charset="utf-8" src="ReceiptOcr.js"></script>
+  <!--<script type="text/javascript" charset="utf-8" src="PluginCopy_ReceiptOcr.js"></script>-->
+
 
   <!-- Config and Controllers -->
   <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
@@ -24,6 +32,9 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/pure-min.css">
   <link rel="stylesheet" href="css/layouts/side-menu.css">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"/>
+
 
 </head>
 
