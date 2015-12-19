@@ -1,6 +1,7 @@
 
 var ezFinanceTrackerApp = angular.module('ezFinanceTrackerApp', [
-  'ui.router'
+  'ui.router',
+  'ngSanitize'
 ]);
 
 ezFinanceTrackerApp.factory('menu', function() {
@@ -29,6 +30,7 @@ ezFinanceTrackerApp.config(function($stateProvider, $urlRouterProvider){
         /*templateUrl: "",*/
         controller: function($scope){
           $scope.items = ["A", "List", "Of", "Items"];
+
         }
     })
     .state('splash', {
