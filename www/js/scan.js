@@ -85,11 +85,7 @@ ezFinanceTrackerApp.config(function($stateProvider, $urlRouterProvider){
                     controller: function($rootScope, $scope, $state, $stateParams, $http, tesseract, menu){
                         console.log("entering state: scan.load");
                         $scope.clickMenu = menu.toggle; 
-                        /*var smallImage = document.getElementById('smallImage');
-                        smallImage.style.display = 'block';
-                        smallImage.src = "data:image/jpeg;base64," + imageData;*/
-                        imageData = $stateParams.originalImage;  //$state.current.data.originalImage;
-                        //if (imageData.length != 0) $state.go("scan.review");
+                        imageData = $stateParams.originalImage;
 
                         if (!$rootScope.languageFilesAvailable) {
                             console.log("Initializing language files");
@@ -102,50 +98,54 @@ ezFinanceTrackerApp.config(function($stateProvider, $urlRouterProvider){
                             //     $state.go("login");
                             //}
                         }
+
                         tesseract.run(imageData,
                             function(results) {
                                 _params = {}; 
                                 //if (results == undefined) console.log("results is undefined");
                                 //console.log(results);
-                                //var parsedData = JSON.parse("{\"hocr\":\"<div class='ocr_page' id='page_1' title='image \\\"\\\"; bbox 0 0 432 768; ppageno 0'>\\n   <div class='ocr_carea' id='block_1_1' title=\\\"bbox 6 0 432 768\\\">\\n    <p class='ocr_par' dir='ltr' id='par_1_1' title=\\\"bbox 6 0 432 768\\\">\\n     <span class='ocr_line' id='line_1_1' title=\\n\",\"imageData\":\"TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCBieSB0aGlzIHNpbmd1bGFyIHBhc3Npb24gZnJvbSBvdGhlciBhbmltYWxzLCB3aGljaCBpcyBhIGx1c3Qgb2YgdGhlIG1pbmQsIHRoYXQgYnkgYSBwZXJzZXZlcmFuY2Ugb2YgZGVsaWdodCBpbiB0aGUgY29udGludWVkIGFuZCBpbmRlZmF0aWdhYmxlIGdlbmVyYXRpb24gb2Yga25vd2xlZGdlLCBleGNlZWRzIHRoZSBzaG9ydCB2ZWhlbWVuY2Ugb2YgYW55IGNhcm5hbCBwbGVhc3VyZS4=\"}"/*results*/);
                                 //var parsedData = JSON.parse(results);
                                 var parsedData = results;
                                 _params.hocr = parsedData.hocr;
                                 _params.imageData = parsedData.imageData;
-                                //console.log(results);
-                                $state.go("scan.review", _params); 
+                                $state.go("scan.annotate", _params); 
                             }, function() {
                                 return;
                             }
                         );
+                    }
+                }
+            }
+        })
+        .state('scan.annotate', {
+            url: "/annotate",
+            params: {hocr: null, imageData: null},
+            views: {
+                "scan_main": { 
+                    templateUrl: "html_templates/scan.annotate.html",
+                    controller: function($scope, $state, $stateParams, menu, $sce){
+                        $scope.clickMenu = menu.toggle;
+                        console.log("entering state: scan.annotate");
+                        //console.log($stateParams.hocr);
+                        //console.log($stateParams.imageData);
+                        $scope.hocr = $sce.trustAsHtml($stateParams.hocr);
+                        $scope.imageData = "data:image/jpeg;base64," + $stateParams.imageData;
+                        //$.parseHTML(ocrResultsHtml);
 
-                        /*$http.post("http://45.55.160.70/upload_image.php", imageData).success(
-                          function(responseData, status) {
-                            //$state.current.data.processedResults = responseData;
-                            _params = {}
-                            _params.processedResults = responseData;
-                            _params.processedResults = run_tesseract("hello");
-                               $state.go("scan.review", _params); 
-                          }
-                        );*/
                     }
                 }
             }
         })
         .state('scan.review', {
             url: "/review",
-            params: {hocr: null, imageData: null},
+            params: {receiptData: null},
             views: {
                 "scan_main": { 
                     templateUrl: "html_templates/scan.review.html",
                     controller: function($scope, $state, $stateParams, menu, $sce){
-                        console.log("entering state: scan.review");
-                        console.log($stateParams.hocr);
-                        console.log($stateParams.imageData);
-                        $scope.hocr = $sce.trustAsHtml($stateParams.hocr);
-                        $scope.imageData = "data:image/jpeg;base64," + $stateParams.imageData;
-                        //$.parseHTML(ocrResultsHtml);
                         $scope.clickMenu = menu.toggle;
+                        console.log("entering state: scan.review");
+
                     }
                 }
             }
