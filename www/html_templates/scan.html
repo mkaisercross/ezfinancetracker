@@ -1,0 +1,27 @@
+<style type="text/css">
+
+#loading {
+width: 100%;
+height: 100%;
+}
+
+</style>
+
+<div id="layout">
+  <ng-include src="'html_templates/menu.html'"> </ng-include>
+  <div id="main">
+    <div class="header">
+      <h1>Take Photo</h1>
+    </div>
+    <div class="content">
+      <div ui-view="scan_main"> </div>
+    </div>
+  </div> <!-- END .main -->
+</div> <!-- END .layout -->
+
+
+<!-- NEEDED but temporarily commented. -->
+<!-- <script type="text/javascript" charset="utf-8" src="js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script> 
+<script type="text/javascript" charset="utf-8" src="js/ui.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/takephoto.js"></script> -->

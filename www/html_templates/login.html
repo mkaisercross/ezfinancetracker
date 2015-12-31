@@ -1,0 +1,54 @@
+
+  <style>
+  footer {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: auto;
+      width: 100%;
+      margin-bottom: 40px;
+      min
+  }
+
+  .main {
+    padding: 2.3em;
+  }
+
+
+  .pure-form .checkbox {
+    float: left !important;
+    width: 100% !important;
+  }
+  .pure-form .checkbox input, .pure-form .checkbox label {
+    float: left !important;
+     margin-right: 4px;
+  }
+  #Login {
+    width: 100%;
+    font-size: 150%;
+  }
+  </style>
+
+  <div class="main">
+    <h1><center>EZ Finance Tracker Login</center></h1>
+    <form id="login" class="pure-form pure-form-stacked login" onsubmit="return false;">
+      <fieldset>
+        <label for="username">Username</label>
+	<input class="username" type="text" name="Username" required value="rcarlson" >
+        <label for="password">Password</label>
+	<input class="password" type="text" name="password" required value="*********" >
+        <br>
+        <div class="checkbox">
+          <input id="remember" type="checkbox"> <label for="remember"> Keep me logged in </label>
+        </div>
+        <br/>
+        <br/>
+
+	<button id="Login" class="pure-button pure-button-primary float-left submit-button" ui-sref="splash">Login</button> <!--onclick="window.location.href='#/splash'"-->
+      </fieldset>
+    </form>
+    <footer>
+      <center><label for="Register">Not registered? </label><button id="Register" type="submit" class="button-xsmall pure-button">Register</button></center>
+    </footer>
+  </div>
+
