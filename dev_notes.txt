@@ -1,5 +1,5 @@
 = receipt scan app =
-+ ns#sdev_receipt_scan_app << sdev, computer_vision, opencv, tesseract, phonegap, angularjs, web_dev, machine_learning, nlp, data_science
++ ns#sdev_receipt_scan_app << sdev, computer_vision, opencv, tesseract, phonegap, angularjs, web_dev, machine_learning, nlp, data_science, ocr
 
 
 == receipt capture process ==
@@ -7,6 +7,9 @@
   - go through steps sequentially. new page dedicated to each
     - 1) select receipt global info. store name, purchase total payed, tax, date of purchase, etc.
       - when a box is selected as the location of a field, blur background, have a pointer and pointer title pointing at box.
+      - modal for each field. print current field to select at top of screen. 
+      - after selecting a bounding box as the location of the field data, animate movement of data to top and populate text box adjacent to field name title.
+
     - 2) divide items by selecting all lines that belong to a distinct item. during this process offer an autocomplete preview and message to confirm.
     - 3) annotate item details. name, single price, lump sum price, unique id, discount, quantity, 
     - 4) review all receipt annotations and confirm

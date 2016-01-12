@@ -1,30 +1,3 @@
-//ezFinanceTrackerApp.factory('tesseract', tesseractFactory);
-
-/*function classifyOcrToReceipt(ocrDom) {
-
-    conditionActionMap = [
-        [function(node) {
-            if (!node.hasClass('ocrx_word')) 
-
-            return 
-         }, 
-         function(f) {return f()}], 
-    ];
-
-    recursivelyIterate(conditionActionMap, ocrDom);
-
-}
-
-function recursivelyIterate(conditionActionMap, node, args) {
-    for (i = conditionActionMap) {
-        if (i[0](node)) return i[1](arguments.callee.caller, conditionActionMap);
-    }
-    return;
-}
-*/
-
-
-
 
 
 ezFinanceTrackerApp.config(function($stateProvider, $urlRouterProvider){
@@ -32,6 +5,17 @@ ezFinanceTrackerApp.config(function($stateProvider, $urlRouterProvider){
     $stateProvider
     .state('scan', {
         url: "/scan",
+        data: {
+            hocr: null,
+            imageData: null,
+            receiptData: {storeName: null, 
+                storeAddress: null,
+                storePhone: null,
+                purchaseDate: null,
+                total: null,
+                totalTax: null,
+                itemInfo: null}
+        },
         views: {
             "main": { 
                 templateUrl: "html_templates/scan.html",
@@ -108,7 +92,7 @@ ezFinanceTrackerApp.config(function($stateProvider, $urlRouterProvider){
                                 var parsedData = results;
                                 _params.hocr = parsedData.hocr;
                                 _params.imageData = parsedData.imageData;
-                                $state.go("scan.annotate", _params); 
+                                $state.go("scan.annotate_primary_data", _params); 
                             }, function() {
                                 return;
                             }
@@ -117,28 +101,44 @@ ezFinanceTrackerApp.config(function($stateProvider, $urlRouterProvider){
                 }
             }
         })
-        .state('scan.annotate', {
-            url: "/annotate",
+        .state('scan.annotate_primary_data', {
+            url: "/annotate_primary_data",
+            params: {hocr: null, imageData: null},
+            data: {imageData: null},
+            views: {
+                "scan_main": { 
+                    templateUrl: "html_templates/scan.annotate_primary_data.html",
+                    controller: function($scope, $state, $stateParams, menu, $sce){
+                        $scope.clickMenu = menu.toggle;
+                        console.log("entering state: scan.annotate_primary_data");
+                        $state.current.data.imageData = $stateParams.imageData;
+                        $state.current.data.hocr = $stateParams.hocr;
+                        $scope.hocr = $sce.trustAsHtml($stateParams.hocr);
+                        $scope.imageData = "data:image/jpeg;base64," + $stateParams.imageData;
+                        //hocrDom = $.parseHTML(ocrResultsHtml);
+                    }
+                }
+            }
+        })
+        .state('scan.annotate_item_data', {
+            url: "/annotate_item_data",
             params: {hocr: null, imageData: null},
             views: {
                 "scan_main": { 
-                    templateUrl: "html_templates/scan.annotate.html",
+                    templateUrl: "html_templates/scan.annotate_item_data.html",
                     controller: function($scope, $state, $stateParams, menu, $sce){
                         $scope.clickMenu = menu.toggle;
-                        console.log("entering state: scan.annotate");
-                        //console.log($stateParams.hocr);
-                        //console.log($stateParams.imageData);
-                        $scope.hocr = $sce.trustAsHtml($stateParams.hocr);
-                        $scope.imageData = "data:image/jpeg;base64," + $stateParams.imageData;
-                        //$.parseHTML(ocrResultsHtml);
-
+                        console.log("entering state: scan.annotate_item_data");
+                        //$scope.hocr = $sce.trustAsHtml($stateParams.hocr);
+                        //$scope.imageData = "data:image/jpeg;base64," + $stateParams.imageData;
+                        $scope.hocr = $sce.trustAsHtml($state.current.data.hocr);
+                        $scope.imageData = "data:image/jpeg;base64," + $state.current.data.imageData;
                     }
                 }
             }
         })
         .state('scan.review', {
             url: "/review",
-            params: {receiptData: null},
             views: {
                 "scan_main": { 
                     templateUrl: "html_templates/scan.review.html",
